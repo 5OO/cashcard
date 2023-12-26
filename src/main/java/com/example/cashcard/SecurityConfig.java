@@ -19,7 +19,6 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(request -> request
                 .requestMatchers("/cashcards/**")
                 .hasRole("CARD-OWNER"))
-//                .anyRequest().authenticated())
                 .csrf(csrf -> csrf.disable())
                 .httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
