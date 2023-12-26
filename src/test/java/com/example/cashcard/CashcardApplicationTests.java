@@ -183,4 +183,14 @@ class CashcardApplicationTests {
                 .getForEntity("/cashcards/99999", HttpMethod.PUT, request, Void.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
+
+    @Test
+    void shouldNotUpdateACashCardThatIsOwnedBySomeoneEse() {
+        CashCard kummiksCard = new CashCard(null, 333.33, null);
+        HttpEntity<CashCard> request = new HttpEntity<>(kummiksCard);
+        ResponseEntity<Void> response = restTemplate
+                .withBasicAuth("sarah1", "abc123")
+                .getForEntity("/cashcards/102", HttpMethod.PUT, request, Void.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
 }
