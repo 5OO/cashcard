@@ -26,10 +26,7 @@ class CashCardController {
 
     @GetMapping("/{requestedId}")
     private ResponseEntity<CashCard> findById(@PathVariable Long requestedId, Principal principal) {
-//        Optional<CashCard> cashCardOptional = Optional.ofNullable(cashCardRepository.
-//                findByIdAndOwner(requestedId, principal.getName()));
         CashCard cashCard = cashCardRepository.findByIdAndOwner(requestedId, principal.getName());
-
         if (cashCard != null) {
             return ResponseEntity.ok(cashCard);
         } else {
