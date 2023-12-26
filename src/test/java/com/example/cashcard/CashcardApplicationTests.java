@@ -180,7 +180,7 @@ class CashcardApplicationTests {
         HttpEntity<CashCard> request = new HttpEntity<>(unknownCard);
         ResponseEntity<Void> response = restTemplate
                 .withBasicAuth("sarah1", "abc123")
-                .getForEntity("/cashcards/99999", HttpMethod.PUT, request, Void.class);
+                .exchange("/cashcards/99999", HttpMethod.PUT, request, Void.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
@@ -190,7 +190,7 @@ class CashcardApplicationTests {
         HttpEntity<CashCard> request = new HttpEntity<>(kummiksCard);
         ResponseEntity<Void> response = restTemplate
                 .withBasicAuth("sarah1", "abc123")
-                .getForEntity("/cashcards/102", HttpMethod.PUT, request, Void.class);
+                .exchange("/cashcards/102", HttpMethod.PUT, request, Void.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }
