@@ -26,7 +26,7 @@ class CashCardController {
 
     @GetMapping("/{requestedId}")
     private ResponseEntity<CashCard> findById(@PathVariable Long requestedId, Principal principal) {
-        CashCard cashCard = cashCardRepository.findByIdAndOwner(requestedId, principal.getName());
+        CashCard cashCard = findCashCard(requestedId, principal);
         if (cashCard != null) {
             return ResponseEntity.ok(cashCard);
         } else {
